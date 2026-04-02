@@ -10,6 +10,14 @@
 # PDFs generados (se regeneran con los scripts)
 design-automation/PDFs/
 
+# Archivos temporales y de prueba
+f.pdf
+fff.pdf
+gggg.pdf
+formal.docx
+"NOMBRE DE LA EMPRESA.docx"
+"NOMBRE DE LA EMPRES1.docx"
+
 # Subcarpeta antigua del repo
 drive-download-20260401T233644Z-1-001/
 drive-download-20260401T233706Z-1-001/
