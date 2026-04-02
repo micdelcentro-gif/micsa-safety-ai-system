@@ -9,7 +9,8 @@ Diseñar la estructura visual, el layout y la composición de documentos corpora
 
 ## 🗺️ MAPA DE RECURSOS (SCRIPTS .JSX)
 
-Los scripts para Adobe Illustrator se encuentran en `C:\Users\Tecnolaps\OneDrive\Desktop\MICSA_Safety\`:
+Los scripts para Adobe Illustrator se encuentran ahora centralizados en la carpeta de automatización del repositorio:
+`C:\Users\Tecnolaps\OneDrive\Desktop\micsa-safety-ai-system\design-automation\`
 
 | Script | Identidad Visual | Páginas | Propósito |
 | :--- | :--- | :--- | :--- |
@@ -17,6 +18,9 @@ Los scripts para Adobe Illustrator se encuentran en `C:\Users\Tecnolaps\OneDrive
 | `MICSA_SAFETY_TACTICO.jsx` | **Tactical (Negro/Plata)** | 6 | Presentación técnica, cultura operativa, plan de capacitación 5 fases, ruta crítica. |
 | `MICSA_SAFETY_PRESENTACION.jsx` | **Premium (Navy/Gold)** | 7 | Presentación corporativa completa, matriz de evaluación, mockup de papelería. |
 | `MICSA_COTIZACION_FCA.jsx` | **Tactical (Negro/Plata)** | 7 | Cotización formal Stellantis/FCA, desglose de nómina por plaza (21 elementos), resumen financiero. |
+| `MICSA_MANUAL_SEGURIDAD.jsx`| **Tactical (Negro/Plata)** | 8 | Manual operativo industrial, marco legal NOM, protocolos de emergencia y KPIs. |
+| `MICSA_CULTURA_COMPLETO.jsx`| **Tactical (Negro/Plata)** | 8 | Identidad y cultura organizacional, visión interna, valores y plan de carrera. |
+| `MICSA_PLAN_IMPLEMENTACION.jsx` | **Tactical (Negro/Plata)** | 7 | Ruta crítica Gantt 8 semanas, checklist arranque, protocolo emergencias, KPIs operativos. |
 
 ## 🎨 IDENTIDADES VISUALES Y ESTILOS
 
@@ -44,6 +48,11 @@ Cuando la IA (Cline/Copilot/Claude) edite estos scripts, debe seguir estas funci
 ## 🤖 INSTRUCCIONES PARA LA IA
 
 1. **Consistencia de Marca:** No mezcles paletas de colores entre scripts.
-2. **Rutas de Archivo:** Asegura que `BASE_PATH` y `LOGO_FILE` (o `LOGO`) apunten a `C:\Users\Tecnolaps\OneDrive\Desktop\MICSA_Safety\logo.png`.
+2. **Rutas de Archivo:** Las rutas reales en todos los scripts son:
+   - `BASE = "C:\\Users\\Tecnolaps\\OneDrive\\Desktop\\MICSA_Safety\\"` — carpeta de trabajo y salida de `.ai`
+   - `LOGO = "C:\\Users\\Tecnolaps\\OneDrive\\Desktop\\adobe\\ID-5608-20260329T034218Z-1-001\\ID-5608\\LOGO 7\\editable\\editable.ai"` — logotipo vectorial
+   - `OUT  = BASE + "PDFs\\"` — carpeta de exportación PDF
+   No cambies estas rutas a menos que el usuario mueva físicamente los archivos.
 3. **Artboards:** Mantén el tamaño Carta o A4 según el script original.
 4. **Layout:** Usa la retícula (grid) definida por las constantes `MRG` (margen) y `MM` (milímetros).
+5. **Ubicación de Scripts:** Todos los `.jsx` deben guardarse siempre en `design-automation/`.
