@@ -1,0 +1,15 @@
+# Temporales Office
+~$*
+
+# Ejecutables
+*.exe
+
+# Archivos comprimidos
+*.zip
+
+# PDFs generados (se regeneran con los scripts)
+design-automation/PDFs/
+
+# Subcarpeta antigua del repo
+drive-download-20260401T233644Z-1-001/
+drive-download-20260401T233706Z-1-001/

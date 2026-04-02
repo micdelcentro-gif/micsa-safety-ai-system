@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- MICSA Safety Division | Corporate Letterhead | Updated 2026 -->
+<!-- Color Scheme: Red (#C1272D) + Dark Gray (#3A3A3A) + White (#FFFFFF) -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="595pt" height="842pt" viewBox="0 0 595 842" version="1.1">
+
+  <defs>
+    <style type="text/css">
+      .header-title { font-family: 'Montserrat', 'Arial Black', sans-serif; font-weight: 900; font-size: 24px; letter-spacing: 2px; }
+      .header-subtitle { font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 10px; letter-spacing: 1.5px; }
+      .header-tagline { font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-weight: 700; font-size: 8px; letter-spacing: 0.5px; }
+      .body-text { font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 9px; }
+      .label-text { font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-weight: 600; font-size: 7.5px; letter-spacing: 1px; }
+      .footer-text { font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-weight: 300; font-size: 7px; }
+      .red-accent { fill: #C1272D; }
+      .dark-gray { fill: #3A3A3A; }
+      .white-text { fill: #FFFFFF; }
+      .light-gray { fill: #EEEEEE; }
+    </style>
+  </defs>
+
+  <!-- PAGE BACKGROUND -->
+  <rect width="595" height="842" fill="#FFFFFF"/>
+
+  <!-- HEADER SECTION: Red Block -->
+  <rect x="0" y="0" width="595" height="95" class="red-accent"/>
+
+  <!-- HEADER: Company Name & Branding -->
+  <text x="25" y="45" class="header-title white-text">MICSA</text>
+  <text x="25" y="62" class="header-subtitle white-text">SAFETY DIVISION</text>
+  <text x="25" y="78" class="header-tagline white-text">Sistema Integral de Seguridad Patrimonial e Industrial</text>
+
+  <!-- CONTACT INFO: Right side header -->
+  <text x="570" y="25" text-anchor="end" class="body-text white-text">www.micsasafety.com.mx</text>
+  <text x="570" y="42" text-anchor="end" class="body-text white-text">contacto@micsasafety.com.mx</text>
+  <text x="570" y="59" text-anchor="end" class="body-text white-text">+52 (844) 637-0000</text>
+  <text x="570" y="76" text-anchor="end" class="body-text white-text">Monclova, Coahuila, México</text>
+
+  <!-- ACCENT LINE -->
+  <rect x="0" y="95" width="595" height="2.5" fill="#3A3A3A"/>
+
+  <!-- META INFO LINE -->
+  <rect x="0" y="97.5" width="595" height="20" class="light-gray"/>
+  <text x="30" y="111" class="body-text dark-gray">Monclova, Coahuila, México  ·  Fecha: ____________________  ·  Folio: ____________  ·  Ref: ____________</text>
+
+  <!-- LEFT MARGIN ACCENT LINE -->
+  <rect x="15" y="117.5" width="2" height="660" fill="#C1272D" opacity="0.4"/>
+
+  <!-- SUBJECT SECTION -->
+  <text x="30" y="145" class="label-text dark-gray">ASUNTO:</text>
+  <rect x="30" y="150" width="535" height="1" fill="#3A3A3A" opacity="0.3"/>
+
+  <!-- CONTENT AREA - Placeholder for letter body -->
+  <rect x="30" y="170" width="535" height="400" fill="none" stroke="#CCCCCC" stroke-width="0.5" stroke-dasharray="2,2" opacity="0.3"/>
+  <text x="35" y="190" class="body-text dark-gray" opacity="0.5">[Contenido de la carta / Letter content here]</text>
+
+  <!-- SIGNATURE SECTION -->
+  <line x1="30" y1="600" x2="280" y2="600" stroke="#3A3A3A" stroke-width="1" opacity="0.5"/>
+  <text x="30" y="615" class="label-text dark-gray">Nombre y Firma Autorizada</text>
+  <text x="30" y="625" class="body-text dark-gray">MICSA Safety Division</text>
+
+  <line x1="315" y1="600" x2="565" y2="600" stroke="#3A3A3A" stroke-width="1" opacity="0.5"/>
+  <text x="315" y="615" class="label-text dark-gray">Cargo / Posición</text>
+  <text x="315" y="625" class="body-text dark-gray">Gerardo Guzmán Alvarado</text>
+  <text x="315" y="635" class="footer-text dark-gray">Director de Seguridad</text>
+
+  <!-- FOOTER SECTION: Dark Gray Block -->
+  <rect x="0" y="750" width="595" height="92" fill="#3A3A3A"/>
+  <rect x="0" y="750" width="595" height="2.5" fill="#C1272D"/>
+
+  <!-- FOOTER TEXT -->
+  <text x="30" y="775" class="body-text white-text">Monclova, Coahuila, México  ·  RFC: MSD-000000-XXX  ·  REPSE Registrado: XXXXXXXX</text>
+
+  <!-- BRAND MOTTO -->
+  <text x="30" y="795" class="header-tagline" fill="#C1272D" letter-spacing="1.5">No cuidamos instalaciones. Controlamos operaciones.</text>
+
+  <!-- OPERATIONAL MOTTO -->
+  <text x="30" y="815" class="label-text white-text" opacity="0.9">Disciplina  ·  Criterio  ·  Control Operativo</text>
+
+  <!-- PAGE NUMBER -->
+  <text x="565" y="815" text-anchor="end" class="footer-text white-text" opacity="0.7">Pág. 1 / 1</text>
+
+  <!-- DIRECTOR INFO FOOTER -->
+  <text x="30" y="835" class="footer-text white-text" opacity="0.8">Director General: Gerardo Guzmán Alvarado  ·  Experiencia: 5 años Fuerza Civil, Protección Civil y Bomberos</text>
+
+</svg>
