@@ -5,9 +5,9 @@
  * USO: Archivo > Scripts > Otro script...
  */
 
-var BASE = "C:\\Users\\Tecnolaps\\OneDrive\\Desktop\\MICSA_Safety\\";
-var LOGO = "C:\\Users\\Tecnolaps\\OneDrive\\Desktop\\adobe\\ID-5608-20260329T034218Z-1-001\\ID-5608\\LOGO 7\\editable\\editable.ai";
-var OUT  = BASE + "PDFs\\";
+var BASE = "C:\\Users\\Tecnolaps\\OneDrive\\Desktop\\micsa-safety-ai-system\\";
+var LOGO = BASE + "assets\\logo.png";
+var OUT  = BASE + "output\\";
 
 var MM  = 2.834645669;
 var LW  = 8.5 * 72;
@@ -73,9 +73,11 @@ function FTR(doc,O){
       O*LW+MRG,LH-7*MM,5.5,MGRY,FL,LW-MRG*2);
 }
 function SEC(doc,O,y,titulo){
-    T(doc,titulo,O*LW+MRG,y,11,BLK,FB,LW-MRG*2);
-    y+=7*MM;
-    L(doc,O*LW+MRG,y,O*LW+LW-MRG,y,SLV,0.8);
+    R(doc,O*LW+MRG,y,LW-MRG*2,9*MM,LGRY);
+    R(doc,O*LW+MRG,y,3.5*MM,9*MM,SLV);
+    T(doc,titulo,O*LW+MRG+6*MM,y+1.5*MM,10,BLK,FB,LW-MRG*2-8*MM);
+    y+=11*MM;
+    L(doc,O*LW+MRG,y,O*LW+LW-MRG,y,SLV,0.5);
     return y+5*MM;
 }
 function TBL(doc,O,y,hdrs,rows,cols){

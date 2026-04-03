@@ -5,9 +5,9 @@
  * USO: Archivo > Scripts > Otro script...
  */
 
-var BASE_PATH = "C:\\Users\\Tecnolaps\\OneDrive\\Desktop\\MICSA_Safety\\";
-var LOGO_FILE = "C:\\Users\\Tecnolaps\\OneDrive\\Desktop\\MICSA_Safety\\logo.png";
-var OUT_PATH  = BASE_PATH + "PDFs\\";
+var BASE_PATH = "C:\\Users\\Tecnolaps\\OneDrive\\Desktop\\micsa-safety-ai-system\\";
+var LOGO_FILE = BASE_PATH + "assets\\logo.png";
+var OUT_PATH  = BASE_PATH + "output\\";
 
 var MM  = 2.834645669;
 var A4W = 210 * MM;
@@ -60,18 +60,38 @@ function logo(doc,x,y,w){
     }catch(e){}
 }
 function header(doc,O,titulo,pgNum){
-    rect(doc,O*A4W,0,A4W,16*MM,BLACK);
-    rect(doc,O*A4W,16*MM,A4W,1.5*MM,RED);
-    logo(doc,O*A4W+MRG,1.5*MM,18*MM);
-    txt(doc,"MICSA SAFETY DIVISION",O*A4W+MRG+20*MM,4.5*MM,8,WHITE,FB,A4W*0.5);
-    txt(doc,titulo,O*A4W+MRG+20*MM,10.5*MM,6.5,RED2,FL,A4W*0.55);
-    txt(doc,String(pgNum)+" / 6",(O+1)*A4W-MRG-16,6*MM,8,RED,FS,18);
+    // Full Page Background Reset
+    rect(doc,O*A4W,0,A4W,A4H,WHITE);
+    
+    // Tactical Sidebar
+    rect(doc,O*A4W,0,4*MM,A4H,BLACK);
+    rect(doc,O*A4W+4*MM,0,0.8*MM,A4H,RED);
+
+    // Header HUD
+    rect(doc,O*A4W+4.8*MM,0,A4W-4.8*MM,15*MM,BLACK);
+    line(doc,O*A4W+4.8*MM,15*MM,O*A4W+A4W,15*MM,RED,0.5);
+    
+    logo(doc,O*A4W+8*MM,2*MM,14*MM);
+    txt(doc,"MICSA SAFETY DIVISION",O*A4W+25*MM,4.5*MM,8,WHITE,FB,A4W*0.5);
+    txt(doc,titulo.toUpperCase(),O*A4W+25*MM,10.5*MM,6.5,LGRAY,FL,A4W*0.55);
+    
+    // Page Signal
+    rect(doc,(O+1)*A4W-15*MM,2*MM,10*MM,11*MM,RED);
+    txt(doc,String(pgNum),(O+1)*A4W-10*MM,5.5*MM,10,WHITE,FB,8*MM,"C");
 }
 function footer(doc,O){
-    rect(doc,O*A4W,A4H-13*MM,A4W,13*MM,BLACK);
-    rect(doc,O*A4W,A4H-13*MM,A4W,0.8*MM,RED);
-    txt(doc,"Confidencial â€” MICSA Safety Division  |  contacto@micsa.mx  |  800-MICSA-01  |  www.micsa.mx",
-        O*A4W+MRG,A4H-8*MM,6,MGRAY,FL,A4W-MRG*2);
+    rect(doc,O*A4W+4.8*MM,A4H-10*MM,A4W-4.8*MM,10*MM,BLACK);
+    rect(doc,O*A4W+4.8*MM,A4H-10*MM,A4W-4.8*MM,0.5*MM,RED);
+    txt(doc,"CONFIDENCIAL  |  MICSA Safety Division  |  Monclova, Coahuila  |  micsasafety.com.mx",
+        O*A4W+10*MM,A4H-6*MM,5.5,MGRAY,FL,A4W-MRG*2);
+}
+function sec(doc,O,y,titulo){
+    rect(doc,O*A4W+MRG,y,A4W-MRG*2,8*MM,LGRAY,RED,0.3);
+    rect(doc,O*A4W+MRG,y,2.5*MM,8*MM,BLACK);
+    txt(doc,titulo.toUpperCase(),O*A4W+MRG+6*MM,y+1.5*MM,9,BLACK,FB,A4W-MRG*2-8*MM);
+    y+=10*MM;
+    line(doc,O*A4W+MRG,y,O*A4W+A4W-MRG,y,MGRAY,0.5);
+    return y+6*MM;
 }
 
 // Tabla
@@ -138,6 +158,12 @@ function portada(doc){
 // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 function filosofia(doc){
     var O=1;
+    header(doc,O,"FILOSOFÃ A Y CULTURA OPERATIVA",2);
+    footer(doc,O);
+
+    var y=22*MM;
+    y=sec(doc,O,y,"MISIÃ“N CORPORATIVA");
+
     rect(doc,O*A4W,0,A4W,A4H,WHITE);
     header(doc,O,"FILOSOFÃA Y CULTURA OPERATIVA",2);
     footer(doc,O);
@@ -151,8 +177,7 @@ function filosofia(doc){
         O*A4W+MRG+5*MM,y+4*MM,8,DGRAY,FR,A4W-MRG*2-8*MM);
     y+=22*MM;
 
-    txt(doc,"LOS 4 PILARES DE MICSA SAFETY",O*A4W+MRG,y,12,BLACK,FB,A4W-MRG*2); y+=7*MM;
-    line(doc,O*A4W+MRG,y,O*A4W+A4W-MRG,y,RED,1); y+=5*MM;
+    y=sec(doc,O,y,"LOS 4 PILARES DE MICSA SAFETY");
 
     var pilares=[
         {n:"01",t:"RESPETO OPERATIVO",
@@ -197,9 +222,8 @@ function modelo(doc){
     header(doc,O,"MODELO DE OPERACIÃ“N â€” SISTEMA DE 3 CAPAS",3);
     footer(doc,O);
 
-    var y=20*MM;
-    txt(doc,"SISTEMA INTEGRAL DE CONTROL DE RIESGOS",O*A4W+MRG,y,12,BLACK,FB,A4W-MRG*2); y+=7*MM;
-    line(doc,O*A4W+MRG,y,O*A4W+A4W-MRG,y,RED,1); y+=5*MM;
+    var y=22*MM;
+    y=sec(doc,O,y,"SISTEMA INTEGRAL DE CONTROL DE RIESGOS");
     txt(doc,"Tres capas independientes y complementarias que actÃºan en secuencia para neutralizar cualquier amenaza antes de que se convierta en pÃ©rdida.",
         O*A4W+MRG,y,8,DGRAY,FL,A4W-MRG*2); y+=14*MM;
 
@@ -266,9 +290,8 @@ function liderazgo(doc){
     header(doc,O,"LIDERAZGO Y ESTRUCTURA DE MANDO",4);
     footer(doc,O);
 
-    var y=20*MM;
-    txt(doc,"CADENA DE MANDO OPERATIVO",O*A4W+MRG,y,12,BLACK,FB,A4W-MRG*2); y+=7*MM;
-    line(doc,O*A4W+MRG,y,O*A4W+A4W-MRG,y,RED,1); y+=8*MM;
+    var y=22*MM;
+    y=sec(doc,O,y,"CADENA DE MANDO OPERATIVO");
 
     // Organigrama vertical
     var bw=70*MM, bh=11*MM;
@@ -294,8 +317,7 @@ function liderazgo(doc){
     y += niveles.length*(bh+8*MM)+5*MM;
 
     // Perfil director
-    txt(doc,"DIRECTOR DE SEGURIDAD â€” PERFIL EJECUTIVO",O*A4W+MRG,y,11,BLACK,FB,A4W-MRG*2); y+=7*MM;
-    line(doc,O*A4W+MRG,y,O*A4W+A4W-MRG,y,RED,1); y+=6*MM;
+    y=sec(doc,O,y,"DIRECTOR DE SEGURIDAD â€” PERFIL EJECUTIVO");
 
     var ph=65*MM, pw=A4W-MRG*2;
     rect(doc,O*A4W+MRG,y,pw,ph,LGRAY,MGRAY,0.5);
@@ -349,9 +371,8 @@ function servicios(doc){
     header(doc,O,"SERVICIOS Y PROPUESTA DE VALOR",5);
     footer(doc,O);
 
-    var y=20*MM;
-    txt(doc,"POR QUÃ‰ MICSA SAFETY â€” CONTROL REAL",O*A4W+MRG,y,12,BLACK,FB,A4W-MRG*2); y+=7*MM;
-    line(doc,O*A4W+MRG,y,O*A4W+A4W-MRG,y,RED,1); y+=6*MM;
+    var y=22*MM;
+    y=sec(doc,O,y,"POR QUÃ‰ MICSA SAFETY â€” CONTROL REAL");
     txt(doc,"No vendemos guardias. Entregamos un sistema de control operativo que se integra a su operaciÃ³n industrial y genera evidencia auditble de cada turno.",
         O*A4W+MRG,y,8,DGRAY,FL,A4W-MRG*2); y+=14*MM;
 
@@ -412,9 +433,8 @@ function kpis(doc){
     header(doc,O,"KPIs Y CONTROL DE RENDIMIENTO",6);
     footer(doc,O);
 
-    var y=20*MM;
-    txt(doc,"DASHBOARD DE CONTROL MENSUAL",O*A4W+MRG,y,12,BLACK,FB,A4W-MRG*2); y+=7*MM;
-    line(doc,O*A4W+MRG,y,O*A4W+A4W-MRG,y,RED,1); y+=6*MM;
+    var y=22*MM;
+    y=sec(doc,O,y,"DASHBOARD DE CONTROL MENSUAL");
     txt(doc,"Cada mes el cliente recibe este dashboard completo. Si algÃºn indicador baja de la meta, MICSA Safety activa plan de mejora en 48 horas.",
         O*A4W+MRG,y,8,DGRAY,FL,A4W-MRG*2); y+=12*MM;
 
@@ -440,8 +460,7 @@ function kpis(doc){
     y+=mh+8*MM;
 
     // Tabla KPI operativo
-    txt(doc,"TABLA DE SEGUIMIENTO OPERATIVO MENSUAL",O*A4W+MRG,y,11,BLACK,FB,A4W-MRG*2); y+=7*MM;
-    line(doc,O*A4W+MRG,y,O*A4W+A4W-MRG,y,RED,0.8); y+=5*MM;
+    y=sec(doc,O,y,"TABLA DE SEGUIMIENTO OPERATIVO MENSUAL");
     var kRows=[
         ["Puntualidad (%)","â‰¥ 97%","_____ %","_____","_____"],
         ["BitÃ¡coras completas","100%","_____ %","_____","_____"],

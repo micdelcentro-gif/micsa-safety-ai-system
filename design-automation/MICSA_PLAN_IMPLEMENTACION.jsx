@@ -5,9 +5,9 @@
  * USO: Archivo > Scripts > Otro script...
  */
 
-var BASE = "C:\\Users\\Tecnolaps\\OneDrive\\Desktop\\MICSA_Safety\\";
-var LOGO = "C:\\Users\\Tecnolaps\\OneDrive\\Desktop\\adobe\\ID-5608-20260329T034218Z-1-001\\ID-5608\\LOGO 7\\editable\\editable.ai";
-var OUT  = BASE + "PDFs\\";
+var BASE = "C:\\Users\\Tecnolaps\\OneDrive\\Desktop\\micsa-safety-ai-system\\";
+var LOGO = BASE + "assets\\logo.png";
+var OUT  = BASE + "output\\";
 
 var MM  = 2.834645669;
 var LW  = 8.5 * 72;
@@ -22,6 +22,7 @@ var DGRY = C(0,0,0,70);
 var MGRY = C(0,0,0,30);
 var LGRY = C(0,0,0,7);
 var WHT  = C(0,0,0,0);
+var RED  = C(0,90,85,0);
 
 var FB = "Montserrat-Bold";
 var FS = "Montserrat-SemiBold";
@@ -59,24 +60,38 @@ function logo(doc,x,y,w){
     }catch(e){}
 }
 function HDR(doc,O,titulo,pg){
-    R(doc,O*LW,0,LW,15*MM,BLK);
-    R(doc,O*LW,15*MM,LW,1*MM,SLV);
-    logo(doc,O*LW+MRG,1.5*MM,16*MM);
-    T(doc,"MICSA SAFETY DIVISION",O*LW+MRG+18*MM,4*MM,8,WHT,FB,LW*0.5);
-    T(doc,titulo,O*LW+MRG+18*MM,10*MM,6.5,SLV,FL,LW*0.55);
-    T(doc,String(pg)+" / 7",(O+1)*LW-MRG-18,5.5*MM,8,SLV,FS,20);
+    // Reset background
+    R(doc,O*LW,0,LW,LH,WHT);
+    
+    // Tactical Sidebar
+    R(doc,O*LW,0,4*MM,LH,BLK);
+    R(doc,O*LW+4*MM,0,0.8*MM,LH,RED);
+
+    // Header Banner
+    R(doc,O*LW+4.8*MM,0,LW-4.8*MM,15*MM,BLK);
+    L(doc,O*LW+4.8*MM,15*MM,O*LW+LW,15*MM,RED,0.5);
+    
+    logo(doc,O*LW+8*MM,2*MM,14*MM);
+    T(doc,"MICSA SAFETY DIVISION",O*LW+25*MM,4.5*MM,8,WHT,FB,LW*0.5);
+    T(doc,titulo.toUpperCase(),O*LW+25*MM,10.5*MM,6.5,LGRY,FL,LW*0.55);
+    
+    // Page Signal
+    R(doc,(O+1)*LW-15*MM,2*MM,10*MM,11*MM,RED);
+    T(doc,String(pg),(O+1)*LW-10*MM,5.5*MM,10,WHT,FB,8*MM,"C");
 }
 function FTR(doc,O){
-    R(doc,O*LW,LH-12*MM,LW,12*MM,BLK);
-    R(doc,O*LW,LH-12*MM,LW,0.7*MM,SLV);
-    T(doc,"DOCUMENTO CONFIDENCIAL  |  MICSA Safety Division  |  Monclova, Coahuila  |  micsasafety.com.mx",
-      O*LW+MRG,LH-7*MM,5.5,MGRY,FL,LW-MRG*2);
+    R(doc,O*LW+4.8*MM,LH-10*MM,LW-4.8*MM,10*MM,BLK);
+    R(doc,O*LW+4.8*MM,LH-10*MM,LW-4.8*MM,0.5*MM,RED);
+    T(doc,"CONFIDENCIAL  |  Plan de Implementacion MICSA  |  micsasafety.com.mx",
+      O*LW+10*MM,LH-6*MM,5.5,MGRY,FL,LW-MRG*2);
 }
 function SEC(doc,O,y,titulo){
-    T(doc,titulo,O*LW+MRG,y,11,BLK,FB,LW-MRG*2);
-    y+=7*MM;
-    L(doc,O*LW+MRG,y,O*LW+LW-MRG,y,SLV,0.8);
-    return y+5*MM;
+    R(doc,O*LW+MRG,y,LW-MRG*2,8*MM,LGRY,RED,0.3);
+    R(doc,O*LW+MRG,y,2.5*MM,8*MM,BLK);
+    T(doc,titulo.toUpperCase(),O*LW+MRG+6*MM,y+1.5*MM,9,BLK,FB,LW-MRG*2-8*MM);
+    y+=10*MM;
+    L(doc,O*LW+MRG,y,O*LW+LW-MRG,y,MGRY,0.5);
+    return y+6*MM;
 }
 function TBL(doc,O,y,hdrs,rows,cols){
     var x=O*LW+MRG,rh=9.5*MM,tw=LW-MRG*2,cx,cw,h,r,c;
@@ -104,31 +119,29 @@ function TBL(doc,O,y,hdrs,rows,cols){
 }
 
 // Barra de Gantt simplificada
-function GANTT_ROW(doc,O,y,fase,sem1,sem2,sem3,sem4,sem5,sem6,sem7,sem8){
-    var tw=LW-MRG*2;
-    var lw=tw*0.28, bw=(tw*0.72)/8, rh=8.5*MM;
-    var semanas=[sem1,sem2,sem3,sem4,sem5,sem6,sem7,sem8];
-    // Etiqueta
-    R(doc,O*LW+MRG,y,lw,rh,LGRY,MGRY,0.2);
-    T(doc,fase,O*LW+MRG+2*MM,y+2*MM,6,DGRY,FR,lw-4*MM);
-    // Barras
-    for(var i=0;i<8;i++){
-        var bx=O*LW+MRG+lw+i*bw;
-        var fill=semanas[i]?BLK:WHT;
-        var stroke=semanas[i]?SLV:MGRY;
-        R(doc,bx,y,bw,rh,fill,stroke,0.2);
-        if(semanas[i]) R(doc,bx+1,y+1.5*MM,bw-2,rh-3*MM,SLV2);
-    }
-    return y+rh;
-}
 function GANTT_HDR(doc,O,y){
     var tw=LW-MRG*2, lw=tw*0.28, bw=(tw*0.72)/8, rh=7*MM;
     R(doc,O*LW+MRG,y,lw,rh,BLK);
     T(doc,"FASE / ACTIVIDAD",O*LW+MRG+2*MM,y+2*MM,6,WHT,FB,lw-4*MM);
     var meses=["SEM 1","SEM 2","SEM 3","SEM 4","SEM 5","SEM 6","SEM 7","SEM 8"];
     for(var i=0;i<8;i++){
-        R(doc,O*LW+MRG+lw+i*bw,y,bw,rh,BLK,SLV,0.2);
-        T(doc,meses[i],O*LW+MRG+lw+i*bw+1,y+2*MM,5.5,SLV,FS,bw-2,"C");
+        R(doc,O*LW+MRG+lw+i*bw,y,bw,rh,BLK,RED,0.2);
+        T(doc,meses[i],O*LW+MRG+lw+i*bw+1,y+2*MM,5.5,RED,FS,bw-2,"C");
+    }
+    return y+rh;
+}
+function GANTT_ROW(doc,O,y,fase,sem1,sem2,sem3,sem4,sem5,sem6,sem7,sem8){
+    var tw=LW-MRG*2;
+    var lw=tw*0.28, bw=(tw*0.72)/8, rh=8.5*MM;
+    var semanas=[sem1,sem2,sem3,sem4,sem5,sem6,sem7,sem8];
+    R(doc,O*LW+MRG,y,lw,rh,LGRY,MGRY,0.2);
+    T(doc,fase,O*LW+MRG+2*MM,y+2*MM,6,DGRY,FR,lw-4*MM);
+    for(var i=0;i<8;i++){
+        var bx=O*LW+MRG+lw+i*bw;
+        var fill=semanas[i]?RED:WHT;
+        var stroke=semanas[i]?RED:MGRY;
+        R(doc,bx,y,bw,rh,fill,stroke,0.2);
+        if(semanas[i]) R(doc,bx+1,y+1.5*MM,bw-2,rh-3*MM,LGRY);
     }
     return y+rh;
 }
@@ -138,31 +151,37 @@ function GANTT_HDR(doc,O,y){
 // ═══════════════════════════════════════════════════════════════════
 function portada(doc){
     var O=0;
+    // Fondo negro total
     R(doc,O*LW,0,LW,LH,BLK);
-    R(doc,O*LW,0,6*MM,LH,SLV);
-    R(doc,(O+1)*LW-3*MM,0,3*MM,LH,SLV2);
-    R(doc,O*LW+6*MM,LH*0.52,LW-6*MM,LH*0.38,WHT);
-    R(doc,O*LW+6*MM,LH*0.52,LW-6*MM,1.5*MM,SLV);
+    // Sidebar Tactico
+    R(doc,O*LW,0,5*MM,LH,RED);
+    R(doc,O*LW+5*MM,0,0.8*MM,LH,WHT);
+    
+    // Zona blanca inferior
+    R(doc,O*LW+5.8*MM,LH*0.52,(LW-5.8*MM),LH*0.38,WHT);
+    R(doc,O*LW+5.8*MM,LH*0.52,LW-5.8*MM,1.5*MM,RED);
+    // Logo centrado
     logo(doc,O*LW+LW/2-32*MM,LH*0.07,64*MM);
-    R(doc,O*LW+10*MM,LH*0.27,55*MM,7*MM,SLV);
-    T(doc,"GESTION OPERATIVA — DOCUMENTO INTERNO",O*LW+11*MM,LH*0.27+1.5*MM,6,BLK,FB,53*MM);
+    // Etiqueta tipo documento
+    R(doc,O*LW+10*MM,LH*0.27,58*MM,7*MM,RED);
+    T(doc,"GESTION OPERATIVA â€” DOCUMENTO INTERNO",O*LW+10*MM,LH*0.27+1.5*MM,6,WHT,FB,58*MM,"C");
+    // Titulo
     T(doc,"PLAN DE",O*LW+10*MM,LH*0.29+8*MM,30,WHT,FB,LW-14*MM);
     T(doc,"IMPLEMENTACION",O*LW+10*MM,LH*0.29+42,22,WHT,FB,LW-14*MM);
-    R(doc,O*LW+10*MM,LH*0.29+66,60*MM,1.2*MM,SLV);
+    // Linea roja + subtitulo
+    R(doc,O*LW+10*MM,LH*0.29+66,60*MM,1.5*MM,RED);
     T(doc,"Ruta Critica  |  Activacion de Contrato  |  Seguimiento Operativo",
-      O*LW+10*MM,LH*0.29+72,9,SLV2,FL,LW-14*MM);
-    T(doc,"ALCANCE",O*LW+10*MM,LH*0.55,7,DGRY,FB,30*MM);
+      O*LW+10*MM,LH*0.29+74,9,LGRY,FL,LW-14*MM);
+    // Datos y Alcance
+    T(doc,"ALCANCE CORPORATIVO",O*LW+10*MM,LH*0.55,7,RED,FB,35*MM);
     T(doc,"Modelo de Arranque para Contratos de Seguridad Industrial de Alto Volumen",
-      O*LW+10*MM,LH*0.55+10,9,BLK,FB,LW*0.55);
-    T(doc,"v2.0  |  Monclova, Coahuila  |  2026",O*LW+10*MM,LH*0.55+22,7,DGRY,FL,LW*0.4);
-    L(doc,O*LW+LW*0.60,LH*0.54,O*LW+LW*0.60,LH*0.90,MGRY,0.5);
+      O*LW+10*MM,LH*0.55+10,9.5,BLK,FB,LW*0.55);
+    T(doc,"v2.0  |  Monclova, Coahuila  |  2026",O*LW+10*MM,LH*0.55+24,7,DGRY,FL,LW*0.4);
+    L(doc,O*LW+LW*0.60,LH*0.54,O*LW+LW*0.60,LH*0.90,RED,0.5);
     T(doc,"Director de Seguridad",O*LW+LW*0.62,LH*0.56,7,DGRY,FL,LW*0.33);
     T(doc,"Gerardo Guzman Alvarado",O*LW+LW*0.62,LH*0.56+10,8.5,BLK,FB,LW*0.33);
     T(doc,"Fuerza Civil  |  Proteccion Civil  |  Bomberos",O*LW+LW*0.62,LH*0.56+21,7,DGRY,FR,LW*0.33);
-    R(doc,O*LW,LH-12*MM,LW,12*MM,BLK);
-    R(doc,O*LW,LH-12*MM,LW,0.7*MM,SLV);
-    T(doc,"DOCUMENTO CONFIDENCIAL  |  MICSA Safety Division  |  micsasafety.com.mx",
-      O*LW+MRG,LH-7*MM,5.5,MGRY,FL,LW-MRG*2);
+    FTR(doc,O);
 }
 
 // ═══════════════════════════════════════════════════════════════════
